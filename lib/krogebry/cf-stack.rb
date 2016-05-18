@@ -2,7 +2,7 @@
 # Basic stack thingie.
 ##
 
-module Maciepoo
+module Stargate
   ## Power drill for building CF stacks.
   class Stack
     @cfg = {}

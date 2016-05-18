@@ -1,10 +1,8 @@
 ---
-```
-This configuration file defines an environment.
-```
+# This configuration file defines an environment.
 environment:
-  name: training
-  description: "Training day.  Get some!"
+  name: production
+  description: "Production environment."
   aws:
     cloudformation:
       regions:

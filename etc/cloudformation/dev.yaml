@@ -1,8 +1,8 @@
 ---
 # This configuration file defines an environment.
 environment:
-  name: training
-  description: "Training day.  Get some!"
+  name: dev
+  description: "Development env."
   chef:
     version: 0.1.0
   aws:

@@ -2,8 +2,8 @@
 # Infrastructure things.
 ##
 
-module Maciepoo
-  class Monitoring < Stack
+module Stargate
+  class Infrastructure < Stack
     def parameters
       data = {}
       ['ssh', 'chef', 'domain', 'keyname' ].each do |name|
@@ -28,8 +28,14 @@ module Maciepoo
       #defaults = super
       #defaults.deep_merge({"blah" => { "yada" => 1 }})
 
+      chef_version = @cfg['environment']['chef']['version']
+
       script = [ "#!/bin/bash -xe\n",
         # "yum update -y aws-cfn-bootstrap\n".
+        "mkdir -p /etc/chef\n",
+        "aws s3 cp s3://maciepoo/chef/solo/solo.rb /etc/chef/\n",
+        format("aws s3 cp s3://maciepoo/chef/solo/archives/chef_cookbooks-%s.tar.bz2 /etc/chef/\n", chef_version),
+        format("aws s3 cp s3://maciepoo/chef/solo/dna/bastion.json /etc/chef/dna.json\n", chef_version),
         format("chef-solo -c /etc/chef/solo.rb -j /etc/chef/dna.json -E %s\n", @cfg["environment"]["name"])
         # "/opt/aws/bin/cfn-init -v ",
         # " --stack ", { "Ref" => "AWS::StackName" },
@@ -44,10 +50,12 @@ module Maciepoo
       env_cfg = @cfg['environment']['aws']['cloudformation']
       profiles = env_cfg['profiles']
       zones = env_cfg['zones']
-      pp zones
+      #pp zones
 
       vpc = get_tpl('resources', 'vpc')
       vpc['PublicSubnet']['Properties']['AvailabilityZone'] = zones['public']
+
+      iam = get_tpl('resources', 'iam')
 
       asg_bastion = get_tpl('resources', 'asg', 'ASG')
       asg_bastion['ASG']['Properties'].delete('LoadBalancerNames')
@@ -77,7 +85,7 @@ module Maciepoo
       lc_bastion['LC']['Properties']['SecurityGroups'] = [{ 'Ref' => 'ISGSSH' }]
       lc_bastion['LC']['Properties']['UserData']['Fn::Base64']['Fn::Join'][1] = script
 
-      vpc.merge(asg_bastion).merge(lc_bastion).merge(isg_ssh)
+      vpc.merge(iam).merge(asg_bastion).merge(lc_bastion).merge(isg_ssh)
     end
 
   end

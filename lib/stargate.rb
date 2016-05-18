@@ -1,16 +1,16 @@
 ##
-# Version container for Maciepoo
+# Version container for Stargate
 ##
 
-module Maciepoo
+module Stargate
   VERSION = "0.1.0".freeze
 
   def self.get_app( cfg )
     if cfg['target'] == 'app'
-      return Maciepoo::Application.new( cfg )
+      return Stargate::Application.new( cfg )
 
     elsif cfg['target'] == 'inf'
-      return Maciepoo::Infrastructure.new( cfg )
+      return Stargate::Infrastructure.new( cfg )
 
     else
       raise Exception.new(format('Unknown target: %s', cfg['target']))

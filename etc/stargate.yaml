@@ -1,9 +1,10 @@
 ---
-# This is the main configuration file for the Maciepoo application.
+# This is the main configuration file for the Stargate application.
 application:
-  name: maciepoo
-  description: "My dogs name is Macie."
+  name: Stargate
+  description: "Stargates and wrath and junk."
 environment:
+  provider: aws-cloudformation
   aws:
     cloudformation:
       images:

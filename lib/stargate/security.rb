@@ -2,7 +2,7 @@
 # Basic stack thingie.
 ##
 
-module Maciepoo
+module Stargate
   class Stack
   end
 end

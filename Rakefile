@@ -11,12 +11,12 @@ require 'logger'
 require 'fileutils'
 require 'deep_merge'
 
-APPLICATION_NAME = 'maciepoo'.freeze
+APPLICATION_NAME = 'stargate'.freeze
 
 Log = Logger.new(STDOUT)
 
-require 'lib/maciepoo.rb'
-require 'lib/maciepoo/stack.rb'
+require 'lib/stargate.rb'
+require 'lib/stargate/stack.rb'
 
 require 'lib/krogebry.rb'
 
@@ -98,7 +98,7 @@ namespace :chef do
     version = args[:version]
     dr = args[:dry_run].to_bool || false
 
-    export_dir = File.join(File::SEPARATOR, 'tmp', 'export', format('maciepoo-%s', version))
+    export_dir = File.join(File::SEPARATOR, 'tmp', 'export', format('stargate-%s', version))
     FileUtils.mkdir_p(export_dir) unless File.exist?(export_dir)
 
     #berks_dir = File.join(ENV['HOME'], '.chef', 'cookbooks')
@@ -131,7 +131,7 @@ namespace :chef do
     system(cmd_cp_environments) unless dr
 
     ## Package everything up.
-    pkg_name = File.join(File::SEPARATOR, 'tmp', format('maciepoo-%s.tar.bz2', version))
+    pkg_name = File.join(File::SEPARATOR, 'tmp', format('stargate-%s.tar.bz2', version))
     cmd_package = format('cd %s ; cd .. ; tar -cjpf %s ./', export_dir, pkg_name)
     Log.debug(format('CMD(package): %s', cmd_package))
     system(cmd_package) unless dr
@@ -141,7 +141,7 @@ namespace :chef do
   task :deploy, :version do |t, args|
     version = args[:version]
 
-    s3_bucket_root = 's3://maciepoo/chef/solo'
+    s3_bucket_root = 's3://stargate/chef/solo'
 
     ## Upload DNA strands.
     s3_dna_bucket = format('%s/dna', s3_bucket_root)
@@ -153,7 +153,7 @@ namespace :chef do
     end
 
     ## Send the archive to S3.
-    fs_archive = File.join(File::SEPARATOR, 'tmp', format('maciepoo-%s.tar.bz2', version))
+    fs_archive = File.join(File::SEPARATOR, 'tmp', format('stargate-%s.tar.bz2', version))
     Log.debug(format('Sending: %s', fs_archive))
 
     s3_bucket_name = format('%s/archives/%s', s3_bucket_root, File.basename(fs_archive))
