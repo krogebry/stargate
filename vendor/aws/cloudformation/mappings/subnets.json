@@ -1,0 +1,9 @@
+{
+  "SubnetConfig" : {
+    "VPC": { "CIDR" : "10.0.0.0/16" },
+    "Public": { "CIDR" : "10.0.0.0/24" }
+  },
+  "SubnetZoneConfig": {
+    "Public": { "useast1": ["us-east-1e"]}
+  }
+}

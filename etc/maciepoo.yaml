@@ -1,0 +1,29 @@
+---
+# This is the main configuration file for the Maciepoo application.
+application:
+  name: maciepoo
+  description: "My dogs name is Macie."
+environment:
+  aws:
+    cloudformation:
+      images:
+        krogebry-base-hvm: 0.4.0
+      key_name: krogebry0
+      ssh_ips: [ 1.1.1.1, 2.2.2.2 ]
+      zones:
+        public: us-east-1d
+      regions:
+        primary: us-east-1
+      profiles:
+        basion:
+          size: t2.micro
+          min: 1
+          max: 1
+        frontend:
+          size: t2.micro
+          min: 1
+          max: 1
+        backend:
+          size: t2.micro
+          min: 1
+          max: 1

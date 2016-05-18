@@ -1,0 +1,7 @@
+{
+  "SubnetIds" : {
+      "Type" : "List<AWS::EC2::Subnet::Id>",
+      "Description" : "The list of SubnetIds in your Virtual Private Cloud (VPC)",
+      "ConstraintDescription" : "must be a list of an existing subnets in the selected Virtual Private Cloud."
+  }
+}

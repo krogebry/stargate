@@ -1,0 +1,6 @@
+{
+  "AZs": {
+    "Type": "CommaDelimitedList",
+    "Description": "List of AZs to use."
+  }
+}

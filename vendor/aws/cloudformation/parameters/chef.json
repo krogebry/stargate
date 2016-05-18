@@ -1,0 +1,7 @@
+{
+  "ChefEnvName": {
+    "Description" : "Chef environment name",
+    "Type": "String",
+    "Default": "training"
+  }
+}

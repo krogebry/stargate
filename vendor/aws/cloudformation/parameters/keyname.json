@@ -1,0 +1,12 @@
+{
+  "KeyName": {
+    "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the web server",
+    "Type": "AWS::EC2::KeyPair::KeyName",
+    "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
+  },
+  "ImageId": {
+    "Description" : "ImageId",
+    "Type": "AWS::EC2::Image::Id",
+    "ConstraintDescription" : "Must be an ami id."
+  }
+}

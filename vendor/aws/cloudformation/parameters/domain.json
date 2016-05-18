@@ -1,0 +1,7 @@
+{
+  "DomainName": {
+    "Description" : "Name of the domain we will be using for this.",
+    "Type": "String",
+    "Default": "krogebry.com"
+  }
+}
