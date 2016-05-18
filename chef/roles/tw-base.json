@@ -10,7 +10,7 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[thoughtworks::base]"
+    "recipe[stargate::base]"
   ],
   "env_run_lists": {
 

@@ -1,23 +1,5 @@
-# thoughtworks
+# Stargate
 
-Thoughtworks project
-
-I've borrowed a few things from my standard library of amazing bits, but for the
-most part this is all original stuff.  My philosphy on developing things like this
-it to really learn the patterns.  Not just memorize, but really learn this, like
-learning to the point where it simply is a part of my standard kit.
-
-This incantation builds on many of the techniques that I've used in the past to
-'solve problems with code.'  So, you might see some things that seem very polished
-but also seem very time consuming.  They're not.  I've been doing this for long
-enough that most of this is second nature.
-
-I made an effort to ensure that at least a few of these files complied with ( most )
-of the rubocop rules.  There are some rules that I think are just plain silly.
-
-Coding is easy.  Explaining it to people always ends up being the difficult part.
-
-Enjoy!
 
 ## Design choices / Notes
 
@@ -122,7 +104,7 @@ jinja2 and yaml, but the idea is still sound.  Regardless of the provider, we'll
 a way to configure the high level construct.
 
 ```
-✔ 23:39 ~/dev/thoughtworks [master|✚ 10…14] $ ls -al etc/cloudformation/
+✔ 23:39 ~/dev/stargate [master|✚ 10…14] $ ls -al etc/cloudformation/
 total 16
 drwxr-xr-x  4 krogebry  staff  136 May 13 13:53 .
 drwxr-xr-x  4 krogebry  staff  136 May 13 17:19 ..
@@ -136,7 +118,7 @@ The core configuration pulls in the environment specific yaml data based on the 
 aka: the rake call
 
 ```
-✔ 23:41 ~/dev/thoughtworks [master|✚ 10…14] $ rake -T
+✔ 23:41 ~/dev/stargate [master|✚ 10…14] $ rake -T
 rake chef:lint                                # Lint check the chef bits
 rake chef:package[dry_run]                    # Package chef bits
 rake cloud:compile[env_name,target,version]   # Compile things
